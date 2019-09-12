@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="zzzz1997博客">
 <meta property="og:description" content="by Antonio Leiva原文链接：https://antonioleiva.com/objects-kotlin/">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-11T05:54:10.859Z">
+<meta property="og:updated_time" content="2019-09-12T02:25:30.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objects in Kotlin:Create safe singletons in one line of code (KAD 27)">
 <meta name="twitter:description" content="by Antonio Leiva原文链接：https://antonioleiva.com/objects-kotlin/">
@@ -29,10 +29,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1405879_95grqpjqain.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1408556_n2qarh8jxce.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1568197777798">
+  <link rel="stylesheet" href="/css/style.css?v=1568277650587">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -56,8 +56,8 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>Articles</span>4</div>
-        <div><span>Tags</span>4</div>
+        <div><span>Articles</span>6</div>
+        <div><span>Tags</span>6</div>
         <div><span>Categories</span>2</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -70,14 +70,14 @@
         </a>
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/miao" title="喵">
-            <i class="mdui-list-item-icon nexmoefont icon-bilibili"></i>
+            <i class="mdui-list-item-icon nexmoefont icon-maomi"></i>
             <div class="mdui-list-item-content">
                 喵
             </div>
         </a>
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/doraemon" title="Doraemon">
-            <i class="mdui-list-item-icon nexmoefont icon-github"></i>
+            <i class="mdui-list-item-icon nexmoefont icon-lingdang"></i>
             <div class="mdui-list-item-content">
                 Doraemon
             </div>
@@ -118,14 +118,14 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/喜欢/">喜欢</a>
-          <span class="category-list-count">1</span>
+          <span class="category-list-count">2</span>
         </li>
 
         
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/技术/">技术</a>
-          <span class="category-list-count">2</span>
+          <span class="category-list-count">3</span>
         </li>
 
         
@@ -140,7 +140,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">Tagcloud</h3>
     <div id="randomtagcloud" class="nexmoe-widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/kotlin/" style="font-size: 10px;">kotlin</a> <a href="/tags/miao/" style="font-size: 10px;">miao</a>
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/dart/" style="font-size: 10px;">dart</a> <a href="/tags/doraemon/" style="font-size: 10px;">doraemon</a> <a href="/tags/kotlin/" style="font-size: 10px;">kotlin</a> <a href="/tags/miao/" style="font-size: 10px;">miao</a>
     </div>
     
   </div>
@@ -175,7 +175,7 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月11日</a>
-    <a><i class="nexmoefont icon-areachart"></i>713 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>721 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/技术/">技术</a>
@@ -191,7 +191,7 @@
 <p>Kotlin objects are another element of the language that we Android developers are not familiarized with, because there is nothing like that in Java.</p>
 <p>In fact, <strong>an object is just a data type with a single implementation.</strong> So if we want to find something similar in Java, that would be the Singleton pattern. We’ll compare them in the next section.</p>
 <h2 id="Singleton-vs-object"><a href="#Singleton-vs-object" class="headerlink" title="Singleton vs object"></a>Singleton vs object</h2><p>Singleton in Java isn’t as easy to implement as it sounds. One might think it’s as simple as this:</p>
-<pre><code>public class Singleton {
+<pre><code class="kotlin">public class Singleton {
 
     private Singleton() {
     }
@@ -205,12 +205,9 @@
 
         return instance;
     }
-}
-</code></pre>
-
-
+}</code></pre>
 <p>But this code is dangerous, especially if it’s used in different threads. If two threads access this singleton at a time, <strong>two instances of this object could be generated.</strong> A safer code would be:</p>
-<pre><code>public class Singleton {
+<pre><code class="kotlin">public class Singleton {
 
     private static Singleton instance = null;
 
@@ -227,35 +224,27 @@
         if (instance == null) createInstance();
         return instance;
     }
-}
-</code></pre>
-
-
+}</code></pre>
 <p>As you can see, you need a few lines to create a valid Singleton.</p>
 <p>What would be the equivalent in <strong>Kotlin</strong>?</p>
-<pre><code>object Singleton
-</code></pre>
-
-
+<pre><code class="kotlin">object Singleton</code></pre>
 <p>You don’t need more. You could use the <em>Show bytecode</em> tool you can find at <em>Tools -&gt; Kotlin</em>, and then use the <em>Decompile</em> option. That way, you can see what’s the implementation that the Kotlin team decided to use for singletons.</p>
 <p>I really recommend using that tool when you’re not sure what’s happening behind the scenes.</p>
 <h2 id="Object-declaration"><a href="#Object-declaration" class="headerlink" title="Object declaration"></a>Object declaration</h2><p>Declaring an object is as simple as declaring a class.</p>
 <p>Let’s declare for example an object that implements a database helper:</p>
-<pre><code>object MySQLOpenHandler : SQLiteOpenHelper(App.instance, "MyDB", null, 1) {
+<pre><code class="kotlin">object MySQLOpenHandler : SQLiteOpenHelper(App.instance, &quot;MyDB&quot;, null, 1) {
 
     override fun onCreate(db: SQLiteDatabase?) {
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
-}
-</code></pre>
-
+}</code></pre>
 <p>As you can see, you just need to use the reserved word <code>object</code> instead of <code>class</code> and the rest is the same. Just take into account that <strong>objects can’t have a constructor</strong>, as we don’t call any constructors to access to them.</p>
 <p><strong>The instance of the object will be created the first time we use it</strong>. So there’s a lazy instantiation here: if an object is never used, the instance will never be created.</p>
 <h2 id="Companion-Object"><a href="#Companion-Object" class="headerlink" title="Companion Object"></a>Companion Object</h2><p>Every class can implement a companion object, which is an object that is common to all instances of that class. It’d come to be similar to static fields in Java.</p>
 <p>An implementation example:</p>
-<pre><code>class App : Application() {
+<pre><code class="kotlin">class App : Application() {
     companion object {
         lateinit var instance: App
             private set
@@ -265,9 +254,7 @@
         super.onCreate()
         instance = this
     }
-}
-</code></pre>
-
+}</code></pre>
 <p>In this case I’m creating a class that extends <code>Application</code> and stores it in the <code>companion object</code> its unique instance.</p>
 <p>The <code>lateinit</code> indicates that this property won’t have value from the beginning, but will be assigned before it’s used (otherwise it’ll throw an exception).</p>
 <p>The <code>private set</code> is used so that a value can’t be assigned from an external class.</p>
@@ -276,7 +263,7 @@
 </blockquote>
 <h2 id="Object-expressions"><a href="#Object-expressions" class="headerlink" title="Object expressions"></a>Object expressions</h2><p>Objects can also be used to create anonymous class implementations.</p>
 <p>An example:</p>
-<pre><code>recycler.adapter = object : RecyclerView.Adapter() {
+<pre><code class="kotlin">recycler.adapter = object : RecyclerView.Adapter() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
     }
 
@@ -286,19 +273,15 @@
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
     }
 
-}
-</code></pre>
-
+}</code></pre>
 <p>Every time you want to create an inline implementation of an interface, for instance, or extend another class, you’ll use the above notation.</p>
 <p>But an object can also represent a class that doesn’t exist. You can create it on the fly:</p>
-<pre><code>val newObj = object {
-    var x = "a"
-    var y = "b"
+<pre><code class="kotlin">val newObj = object {
+    var x = &quot;a&quot;
+    var y = &quot;b&quot;
 }
 
-Log.d(tag, "x:${newObj.x}, y:${newObj.y}")
-</code></pre>
-
+Log.d(tag, &quot;x:${newObj.x}, y:${newObj.y}&quot;)</code></pre>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Objects are a new concept for those of us coming from Java 6, but there are many ideas that can be associated with existing ones, so you’ll get fast with them.</p>
 
   </article>
@@ -347,7 +330,7 @@ Log.d(tag, "x:${newObj.x}, y:${newObj.y}")
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1568197777811"></script>
+<script src="/js/app.js?v=1568277650599"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

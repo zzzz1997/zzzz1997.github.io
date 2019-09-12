@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://qiniu.zzzz1997.com/opencv-nonfree/add_library.png">
 <meta property="og:image" content="http://qiniu.zzzz1997.com/opencv-nonfree/image.jpg">
 <meta property="og:image" content="http://qiniu.zzzz1997.com/opencv-nonfree/image_result.jpg">
-<meta property="og:updated_time" content="2019-09-11T05:54:04.348Z">
+<meta property="og:updated_time" content="2019-09-12T02:27:02.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV2.4.13.6在Android上的采坑（native扩展nonfree）">
 <meta name="twitter:description" content="最近在做一个小组作业，利用SUFT实现图像拼接。采用的是OpenCV2.4.13.6，而在搭建的时候发现Android pack中并没有nonfree文件夹（包括nonfree/features2d.hpp头文件），而libs/**abi/文件夹中也没有相关的libnonfree.so文件，所以并不能使用SUFT。">
@@ -45,10 +45,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1405879_95grqpjqain.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1408556_n2qarh8jxce.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1568197777814">
+  <link rel="stylesheet" href="/css/style.css?v=1568277650604">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -72,8 +72,8 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>Articles</span>4</div>
-        <div><span>Tags</span>4</div>
+        <div><span>Articles</span>6</div>
+        <div><span>Tags</span>6</div>
         <div><span>Categories</span>2</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -86,14 +86,14 @@
         </a>
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/miao" title="喵">
-            <i class="mdui-list-item-icon nexmoefont icon-bilibili"></i>
+            <i class="mdui-list-item-icon nexmoefont icon-maomi"></i>
             <div class="mdui-list-item-content">
                 喵
             </div>
         </a>
         
         <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/doraemon" title="Doraemon">
-            <i class="mdui-list-item-icon nexmoefont icon-github"></i>
+            <i class="mdui-list-item-icon nexmoefont icon-lingdang"></i>
             <div class="mdui-list-item-content">
                 Doraemon
             </div>
@@ -134,14 +134,14 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/喜欢/">喜欢</a>
-          <span class="category-list-count">1</span>
+          <span class="category-list-count">2</span>
         </li>
 
         
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/技术/">技术</a>
-          <span class="category-list-count">2</span>
+          <span class="category-list-count">3</span>
         </li>
 
         
@@ -156,7 +156,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">Tagcloud</h3>
     <div id="randomtagcloud" class="nexmoe-widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/kotlin/" style="font-size: 10px;">kotlin</a> <a href="/tags/miao/" style="font-size: 10px;">miao</a>
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/dart/" style="font-size: 10px;">dart</a> <a href="/tags/doraemon/" style="font-size: 10px;">doraemon</a> <a href="/tags/kotlin/" style="font-size: 10px;">kotlin</a> <a href="/tags/miao/" style="font-size: 10px;">miao</a>
     </div>
     
   </div>
@@ -191,8 +191,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月11日</a>
-    <a><i class="nexmoefont icon-areachart"></i>951 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.6k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/技术/">技术</a>
     
@@ -226,7 +226,7 @@
 <img class="img-fluid" src="http://qiniu.zzzz1997.com/opencv-nonfree/libnonfree.png">
 
 <p>编辑<code>Android.mk</code>文件：</p>
-<pre><code>LOCAL_PATH  := $(call my-dir)
+<pre><code class="mk">LOCAL_PATH  := $(call my-dir)
 OPENCV_PATH := F:\opencv-2.4.13.6-android-sdk\OpenCV-android-sdk\sdk\native\jni
 
 include $(CLEAR_VARS)
@@ -247,16 +247,12 @@ LOCAL_MODULE := nonfree
 LOCAL_CFLAGS := -Werror -O3 -ffast-math
 LOCAL_LDLIBS := -llog -ldl
 
-include $(BUILD_SHARED_LIBRARY)
-</code></pre>
-
+include $(BUILD_SHARED_LIBRARY)</code></pre>
 <p>编辑<code>Application.mk</code>文件：</p>
-<pre><code>APP_STL := gnustl_shared
+<pre><code class="mk">APP_STL := gnustl_shared
 APP_CPPFLAGS := -std=c++11 -frtti -fexceptions
 APP_ABI := armeabi,armeabi-v7a,mips,x86
-APP_PLATFORM := android-21
-</code></pre>
-
+APP_PLATFORM := android-21</code></pre>
 <p>6.完成上面的步骤后，就可以使用命令行工具进入<code>F:/opencv-2.4.13.6-android-sdk/OpenCV-android-sdk/sdk/native/jni/include/libnonfree</code>文件夹，再使用<code>ndk-build</code>命令，如遇到“‘ndk-build’不是内部或外部命令，也不是可运行的程序或批处理文件”，请检查下载ndk-bundle工具并在环境变量中配置好ndk-build</p>
 <p>此时执行，会下列一系类报错，例如</p>
 <img class="img-fluid" src="http://qiniu.zzzz1997.com/opencv-nonfree/ndk-build-error.png">
@@ -273,7 +269,7 @@ APP_PLATFORM := android-21
 
 <p>以armeabi架构为例，将上面的<code>libnonfree/libs/armeabi</code>中所有的.so文件拷贝到<code>jni</code>文件中</p>
 <p>2.在文件夹中新建一个.cpp文件，例如<code>test.cpp</code></p>
-<pre><code>#include &lt;jni.h&gt;
+<pre><code class="c">#include &lt;jni.h&gt;
 #include &lt;android/log.h&gt;
 
 #include &lt;opencv2/core/core.hpp&gt;
@@ -285,76 +281,74 @@ APP_PLATFORM := android-21
 using namespace cv;
 using namespace std;
 
-#define  LOG_TAG    "nonfree_demo"
+#define  LOG_TAG    &quot;nonfree_demo&quot;
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 
 int run_demo();
 
-extern "C" {
+extern &quot;C&quot; {
 JNIEXPORT void JNICALL Java_com_zzapp_nonfree_MainActivity_runDemo(JNIEnv * env, jobject obj);
 };
 
 JNIEXPORT void JNICALL Java_com_zzapp_nonfree_MainActivity_runDemo(JNIEnv * env, jobject obj)
 {
-    LOGI( "开始demo\n");
+    LOGI( &quot;开始demo\n&quot;);
     run_demo();
-    LOGI( "结束demo\n");
+    LOGI( &quot;结束demo\n&quot;);
 }
 
 int run_demo()
 {
     // 输入输出图片地址
-    const char * imgInFile = "/sdcard/nonfree/image.jpg";
-    const char * imgOutFile = "/sdcard/nonfree/image_result.jpg";
+    const char * imgInFile = &quot;/sdcard/nonfree/image.jpg&quot;;
+    const char * imgOutFile = &quot;/sdcard/nonfree/image_result.jpg&quot;;
 
     Mat image;
     image = imread(imgInFile, CV_LOAD_IMAGE_COLOR);
     if(! image.data )
     {
-        LOGI("图片不存在\n");
+        LOGI(&quot;图片不存在\n&quot;);
         return -1;
     }
 
-    vector<keypoint> keypoints;
+    vector&lt;KeyPoint&gt; keypoints;
     Mat descriptors;
 
 
     // 计算特征描述
     SiftFeatureDetector detector;
-    LOGI("检测到%d个特征点\n", (int) keypoints.size());
+    LOGI(&quot;检测到%d个特征点\n&quot;, (int) keypoints.size());
     detector.detect(image, keypoints);
-    LOGI("计算特征描述\n");
+    LOGI(&quot;计算特征描述\n&quot;);
     detector.compute(image,keypoints, descriptors);
 
     // 存储特征描述
     FileStorage fs;
-    LOGI("以写入方式打开文件\n");
-    fs.open("descriptors.des", FileStorage::WRITE);
-    LOGI("写入文件\n");
-    fs << "descriptors" << descriptors;
-    LOGI("释放文件\n");
+    LOGI(&quot;以写入方式打开文件\n&quot;);
+    fs.open(&quot;descriptors.des&quot;, FileStorage::WRITE);
+    LOGI(&quot;写入文件\n&quot;);
+    fs &lt;&lt; &quot;descriptors&quot; &lt;&lt; descriptors;
+    LOGI(&quot;释放文件\n&quot;);
     fs.release();
 
     // 显示图片关键点
     Mat outputImg;
     Scalar keypointColor = Scalar(255, 0, 0);
-    LOGI("绘制图片关键点\n");
+    LOGI(&quot;绘制图片关键点\n&quot;);
     drawKeypoints(image, keypoints, outputImg, keypointColor, DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
 
-    LOGI("存储生成图片\n");
+    LOGI(&quot;存储生成图片\n&quot;);
     imwrite(imgOutFile, outputImg);
 
-    LOGI("完成\n");
+    LOGI(&quot;完成\n&quot;);
     return 0;
-}
-</keypoint></code></pre>
-
+}</code></pre>
 <p><strong>注意其中的方法名<code>Java_com_zzapp_nonfree_MainActivity_runDemo</code>，你需要将其中的<code>com_zzapp_nonfree_MainActivity</code>更改为你的包名加上使用方法的Activity名（包名在后面的使用中应用到，应提前想好）</strong></p>
 <p>3.在<code>libnonfree_demo/jni</code>文件夹中新建两个文件<code>Android.mk</code>，<code>Application.mk</code>，此时你的文件目录应该是这样</p>
 <img class="img-fluid" src="http://qiniu.zzzz1997.com/opencv-nonfree/libnonfree_demo.png">
 
 <p>编辑<code>Android.mk</code>文件：</p>
-<pre><code>LOCAL_PATH  := $(call my-dir)
+<pre><code class="mk">LOCAL_PATH  := $(call my-dir)
 OPENCV_PATH := F:\opencv-2.4.13.6-android-sdk\OpenCV-android-sdk\sdk\native\jni
 
 include $(CLEAR_VARS)
@@ -379,16 +373,12 @@ LOCAL_CFLAGS := -Werror -O3 -ffast-math
 LOCAL_LDLIBS := -llog -ldl
 LOCAL_SHARED_LIBRARIES += nonfree
 
-include $(BUILD_SHARED_LIBRARY)
-</code></pre>
-
+include $(BUILD_SHARED_LIBRARY)</code></pre>
 <p>编辑<code>Application.mk</code>文件：</p>
-<pre><code>APP_STL := gnustl_shared
+<pre><code class="mk">APP_STL := gnustl_shared
 APP_CPPFLAGS := -std=c++11 -frtti -fexceptions
 APP_ABI := armeabi
-APP_PLATFORM := android-21
-</code></pre>
-
+APP_PLATFORM := android-21</code></pre>
 <p>4.同上，使用命令行工具进入<code>F:/opencv-2.4.13.6-android-sdk/OpenCV-android-sdk/sdk/native/jni/include/libnonfree_demo</code>文件夹，再使用<code>ndk-build</code>命令，成功后，在<code>libnonfree_demo/libs/armeabi</code>里生成了几个.so文件，包括一个<code>libnonfree_demo.so</code>文件</p>
 <img class="img-fluid" src="http://qiniu.zzzz1997.com/opencv-nonfree/armeabi.png">
 
@@ -406,7 +396,7 @@ APP_PLATFORM := android-21
 <img class="img-fluid" src="http://qiniu.zzzz1997.com/opencv-nonfree/add_library.png">
 
 <p>4.修改<code>MainActivity</code>文件</p>
-<pre><code>package com.zzapp.nonfree
+<pre><code class="kotlin">package com.zzapp.nonfree
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -435,21 +425,18 @@ class MainActivity : AppCompatActivity() {
     companion object {
         init {
             // 加载.so库文件
-            System.loadLibrary("nonfree_demo")
+            System.loadLibrary(&quot;nonfree_demo&quot;)
         }
     }
-}
-</code></pre>
-
+}</code></pre>
 <p>5.构建前的最后一步，添加权限。因为在<code>test.cpp</code>中，我们有读写外部文件的操作，所以应在<code>AndroidManifest.xml</code>文件中添加两条权限</p>
-<pre><code>&lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/&gt;
-&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;
-</code></pre>
-
+<pre><code class="xml">&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;</code></pre>
 <p>在手机<code>/sdcard/nonfree</code>目录下新建文件<code>image.jpg</code>，打包运行应用。成功！！</p>
 <img class="img-fluid" src="http://qiniu.zzzz1997.com/opencv-nonfree/image.jpg">
 
 <img class="img-fluid" src="http://qiniu.zzzz1997.com/opencv-nonfree/image_result.jpg">
+
   </article>
   
     
@@ -496,7 +483,7 @@ class MainActivity : AppCompatActivity() {
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1568197777828"></script>
+<script src="/js/app.js?v=1568277650616"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

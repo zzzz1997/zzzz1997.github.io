@@ -3,7 +3,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
   
-  <title>Objects in Kotlin:Create safe singletons in one line of code (KAD 27) - zzzz1997博客</title>
+  <title>Hello World - zzzz1997博客</title>
   <meta charset="UTF-8">
   <meta name="description" content>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,18 +11,17 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png">
-  <meta name="description" content="by Antonio Leiva原文链接：https://antonioleiva.com/objects-kotlin/">
-<meta name="keywords" content="kotlin">
+  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Objects in Kotlin:Create safe singletons in one line of code (KAD 27)">
-<meta property="og:url" content="https://zzzz1997.github.io/Kotlin">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="https://zzzz1997.github.io/2019/09/10/hello-world/index.html">
 <meta property="og:site_name" content="zzzz1997博客">
-<meta property="og:description" content="by Antonio Leiva原文链接：https://antonioleiva.com/objects-kotlin/">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-12T02:25:30.609Z">
+<meta property="og:updated_time" content="2019-09-11T03:01:41.285Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Objects in Kotlin:Create safe singletons in one line of code (KAD 27)">
-<meta name="twitter:description" content="by Antonio Leiva原文链接：https://antonioleiva.com/objects-kotlin/">
+<meta name="twitter:title" content="Hello World">
+<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
    
@@ -32,7 +31,7 @@
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1408556_n2qarh8jxce.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1568612570325">
+  <link rel="stylesheet" href="/css/style.css?v=1568612775701">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 </head>
 
@@ -170,120 +169,29 @@
         <div class="nexmoe-post">
     <div class="nexmoe-post-cover"> 
         
-        <img src="http://qiniu.zzzz1997.com/objects-kotlin/objects-kotlin.jpg">
+            <img src="http://qiniu.zzzz1997.com/7f9b18d65986d68f808cfbaca4583d81.jpg">
         
-        <h1>Objects in Kotlin:Create safe singletons in one line of code (KAD 27)</h1>
+        <h1>Hello World</h1>
     </div>
   <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月11日</a>
-    <a><i class="nexmoefont icon-areachart"></i>721 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月10日</a>
+    <a><i class="nexmoefont icon-areachart"></i>75 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
     
-      <a class="nexmoefont icon-appstore-fill -link" href="/categories/技术/">技术</a>
-    
-    
-      <a class="nexmoefont icon-tag-fill -link" href="/tags/kotlin/">kotlin</a>
     
   </div>
   <article>
-    <p>by Antonio Leiva<br>原文链接：<a href="https://antonioleiva.com/objects-kotlin/" target="_blank" rel="noopener">https://antonioleiva.com/objects-kotlin/</a></p>
+    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <a id="more"></a>
 
-<p>Kotlin objects are another element of the language that we Android developers are not familiarized with, because there is nothing like that in Java.</p>
-<p>In fact, <strong>an object is just a data type with a single implementation.</strong> So if we want to find something similar in Java, that would be the Singleton pattern. We’ll compare them in the next section.</p>
-<h2 id="Singleton-vs-object"><a href="#Singleton-vs-object" class="headerlink" title="Singleton vs object"></a>Singleton vs object</h2><p>Singleton in Java isn’t as easy to implement as it sounds. One might think it’s as simple as this:</p>
-<pre><code class="kotlin">public class Singleton {
-
-    private Singleton() {
-    }
-
-    private static Singleton instance;
-
-    public static Singleton getInstance() {
-        if (instance == null) {
-            instance = new Singleton();
-        }
-
-        return instance;
-    }
-}</code></pre>
-<p>But this code is dangerous, especially if it’s used in different threads. If two threads access this singleton at a time, <strong>two instances of this object could be generated.</strong> A safer code would be:</p>
-<pre><code class="kotlin">public class Singleton {
-
-    private static Singleton instance = null;
-
-    private Singleton(){
-    }
-
-    private synchronized static void createInstance() {
-        if (instance == null) {
-            instance = new Singleton();
-        }
-    }
-
-    public static Singleton getInstance() {
-        if (instance == null) createInstance();
-        return instance;
-    }
-}</code></pre>
-<p>As you can see, you need a few lines to create a valid Singleton.</p>
-<p>What would be the equivalent in <strong>Kotlin</strong>?</p>
-<pre><code class="kotlin">object Singleton</code></pre>
-<p>You don’t need more. You could use the <em>Show bytecode</em> tool you can find at <em>Tools -&gt; Kotlin</em>, and then use the <em>Decompile</em> option. That way, you can see what’s the implementation that the Kotlin team decided to use for singletons.</p>
-<p>I really recommend using that tool when you’re not sure what’s happening behind the scenes.</p>
-<h2 id="Object-declaration"><a href="#Object-declaration" class="headerlink" title="Object declaration"></a>Object declaration</h2><p>Declaring an object is as simple as declaring a class.</p>
-<p>Let’s declare for example an object that implements a database helper:</p>
-<pre><code class="kotlin">object MySQLOpenHandler : SQLiteOpenHelper(App.instance, &quot;MyDB&quot;, null, 1) {
-
-    override fun onCreate(db: SQLiteDatabase?) {
-    }
-
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-    }
-}</code></pre>
-<p>As you can see, you just need to use the reserved word <code>object</code> instead of <code>class</code> and the rest is the same. Just take into account that <strong>objects can’t have a constructor</strong>, as we don’t call any constructors to access to them.</p>
-<p><strong>The instance of the object will be created the first time we use it</strong>. So there’s a lazy instantiation here: if an object is never used, the instance will never be created.</p>
-<h2 id="Companion-Object"><a href="#Companion-Object" class="headerlink" title="Companion Object"></a>Companion Object</h2><p>Every class can implement a companion object, which is an object that is common to all instances of that class. It’d come to be similar to static fields in Java.</p>
-<p>An implementation example:</p>
-<pre><code class="kotlin">class App : Application() {
-    companion object {
-        lateinit var instance: App
-            private set
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        instance = this
-    }
-}</code></pre>
-<p>In this case I’m creating a class that extends <code>Application</code> and stores it in the <code>companion object</code> its unique instance.</p>
-<p>The <code>lateinit</code> indicates that this property won’t have value from the beginning, but will be assigned before it’s used (otherwise it’ll throw an exception).</p>
-<p>The <code>private set</code> is used so that a value can’t be assigned from an external class.</p>
-<blockquote>
-<p>Note: You may think that it’d make a lot of sense for App to be an object instead of a class. And so it is, but due to the way the Android framework instantiate the classes, if you try, you’ll see that the application throws an exception when it’s launched. You’ll need App to be a class, and you can create this little Singleton if you want to access to it.</p>
-</blockquote>
-<h2 id="Object-expressions"><a href="#Object-expressions" class="headerlink" title="Object expressions"></a>Object expressions</h2><p>Objects can also be used to create anonymous class implementations.</p>
-<p>An example:</p>
-<pre><code class="kotlin">recycler.adapter = object : RecyclerView.Adapter() {
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-    }
-
-    override fun getItemCount(): Int {
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-    }
-
-}</code></pre>
-<p>Every time you want to create an inline implementation of an interface, for instance, or extend another class, you’ll use the above notation.</p>
-<p>But an object can also represent a class that doesn’t exist. You can create it on the fly:</p>
-<pre><code class="kotlin">val newObj = object {
-    var x = &quot;a&quot;
-    var y = &quot;b&quot;
-}
-
-Log.d(tag, &quot;x:${newObj.x}, y:${newObj.y}&quot;)</code></pre>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Objects are a new concept for those of us coming from Java 6, but there are many ideas that can be associated with existing ones, so you’ll get fast with them.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
   </article>
   
@@ -291,7 +199,7 @@ Log.d(tag, &quot;x:${newObj.x}, y:${newObj.y}&quot;)</code></pre>
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>Author：</strong>zzzz1997<br>
-<strong>Link：</strong><a href="https://zzzz1997.github.io/Kotlin" title="https://zzzz1997.github.io/Kotlin" target="_blank" rel="noopener">https://zzzz1997.github.io/Kotlin</a><br>
+<strong>Link：</strong><a href="https://zzzz1997.github.io/2019/09/10/hello-world/" title="https://zzzz1997.github.io/2019/09/10/hello-world/" target="_blank" rel="noopener">https://zzzz1997.github.io/2019/09/10/hello-world/</a><br>
 
   <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
 
@@ -331,7 +239,7 @@ Log.d(tag, &quot;x:${newObj.x}, y:${newObj.y}&quot;)</code></pre>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1568612570338"></script>
+<script src="/js/app.js?v=1568612775715"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

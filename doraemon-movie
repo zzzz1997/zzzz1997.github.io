@@ -15,7 +15,7 @@
 <meta name="keywords" content="doraemon">
 <meta property="og:type" content="article">
 <meta property="og:title" content="哆啦A梦电影汇总">
-<meta property="og:url" content="https://zzzz1997.github.io/2019/09/12/doraemon-movie/index.html">
+<meta property="og:url" content="https://zzzz1997.github.io/doraemon-movie">
 <meta property="og:site_name" content="zzzz1997博客">
 <meta property="og:description" content="汇总一下历年哆啦A梦电影，并打卡一下观看">
 <meta property="og:locale" content="zh">
@@ -74,7 +74,8 @@
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1408556_n2qarh8jxce.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1568604322497">
+  <link rel="stylesheet" href="/css/style.css?v=1568612570253">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -364,7 +365,7 @@
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>Author：</strong>zzzz1997<br>
-<strong>Link：</strong><a href="https://zzzz1997.github.io/2019/09/12/doraemon-movie/" title="https://zzzz1997.github.io/2019/09/12/doraemon-movie/" target="_blank" rel="noopener">https://zzzz1997.github.io/2019/09/12/doraemon-movie/</a><br>
+<strong>Link：</strong><a href="https://zzzz1997.github.io/doraemon-movie" title="https://zzzz1997.github.io/doraemon-movie" target="_blank" rel="noopener">https://zzzz1997.github.io/doraemon-movie</a><br>
 
   <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
 
@@ -404,12 +405,13 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1568604322519"></script>
+<script src="/js/app.js?v=1568612570271"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
 
+<script src="https://cdn.jsdelivr.net/gh/zzzz1997/live2d-widget/autoload.js"></script>
   
 
 
@@ -426,6 +428,6 @@
     })();
 </script>
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>

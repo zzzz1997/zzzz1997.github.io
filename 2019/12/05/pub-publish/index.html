@@ -3,7 +3,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
   
-  <title>Tags：doraemon - zzzz1997博客</title>
+  <title>dart pub上传失败如何解决（转载） - zzzz1997博客</title>
   <meta charset="UTF-8">
   <meta name="description" content>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,13 +11,18 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zzzz1997博客">
-<meta property="og:url" content="https://zzzz1997.github.io/tags/doraemon/index.html">
+  <meta name="description" content="问题： Flutter Exception: Pub will wait for a while before trying to connect again.">
+<meta name="keywords" content="Dart">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dart pub上传失败如何解决（转载）">
+<meta property="og:url" content="https://zzzz1997.github.io/2019/12/05/pub-publish/index.html">
 <meta property="og:site_name" content="zzzz1997博客">
+<meta property="og:description" content="问题： Flutter Exception: Pub will wait for a while before trying to connect again.">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-12-04T09:59:54.083Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zzzz1997博客">
+<meta name="twitter:title" content="dart pub上传失败如何解决（转载）">
+<meta name="twitter:description" content="问题： Flutter Exception: Pub will wait for a while before trying to connect again.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
    
@@ -27,7 +32,7 @@
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1408556_n2qarh8jxce.css">
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1575453685230">
+  <link rel="stylesheet" href="/css/style.css?v=1575453685365">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 </head>
 
@@ -162,37 +167,73 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        <section class="nexmoe-posts" id="brand-waterfall">
-    
-    <div class="nexmoe-post">
-        <a href="/2019/09/12/doraemon-movie/">
-            <div class="nexmoe-post-cover mdui-ripple"> 
-                
-                <img src="http://qiniu.zzzz1997.com/8601a18b87d6277f29d556df26381f30e824fc16.jpg" alt="哆啦A梦电影汇总">
-                
-                <h1>哆啦A梦电影汇总</h1>
-            </div>
-        </a>
-        <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月12日</a>
-            <a><i class="nexmoefont icon-areachart"></i>3.8k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 15 分钟</a>
-            
-                <a class="nexmoefont icon-appstore-fill -link" href="/categories/喜欢/">喜欢</a>
-            
-            
-                <a class="nexmoefont icon-tag-fill -link" href="/tags/doraemon/">doraemon</a>
-            
-        </div>
-        <article>
-            
-            <p>汇总一下历年哆啦A梦电影，并打卡一下观看</p>
-            
-        </article>
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+        <img src="http://qiniu.zzzz1997.com/c83d70cf3bc79f3d068c6661b6a1cd11728b2976.png">
+        
+        <h1>dart pub上传失败如何解决（转载）</h1>
     </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年12月04日</a>
+    <a><i class="nexmoefont icon-areachart"></i>110 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
     
-</section>
+      <a class="nexmoefont icon-appstore-fill -link" href="/categories/技术/">技术</a>
+    
+    
+      <a class="nexmoefont icon-tag-fill -link" href="/tags/Dart/">Dart</a>
+    
+  </div>
+  <article>
+    <p>问题： Flutter Exception: Pub will wait for a while before trying to connect again.</p>
+<a id="more"></a>
 
+<p>1.设置终端代理</p>
+<pre><code class="bash">export http_proxy=http://127.0.0.1:1080;
+export https_proxy=http://127.0.0.1:1080;</code></pre>
+<p>2.使用curl google.com测试是否连通</p>
+<pre><code class="bash">curl google.com</code></pre>
+<p>3.禁用设置的镜像源</p>
+<pre><code class="bash">unset FLUTTER_STORAGE_BASE_URL;
+unset PUB_HOSTED_URL;</code></pre>
+<p>4.检查是否可上传</p>
+<pre><code class="bash">flutter packages pub publish --dry-run --server=https://pub.dartlang.org</code></pre>
+<p>5.上传</p>
+<pre><code class="bash">flutter packages pub publish --server=https://pub.dartlang.org</code></pre>
+<p>（转载自：<a href="https://www.cnblogs.com/meetqy/p/11250024.html" target="_blank" rel="noopener">dart pub上传失败如何解决</a>）</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>zzzz1997<br>
+<strong>Link：</strong><a href="https://zzzz1997.github.io/2019/12/05/pub-publish/" title="https://zzzz1997.github.io/2019/12/05/pub-publish/" target="_blank" rel="noopener">https://zzzz1997.github.io/2019/12/05/pub-publish/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: 'e82953329a9ceaa29251',
+        clientSecret: 'c5158215bcc0ef469e83844c5f312a9a54cc00d2',
+        id: window.location.pathname,
+        repo: 'zzzz1997.github.io',
+        owner: 'zzzz1997',
+        admin: 'zzzz1997'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
@@ -208,7 +249,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1575453685248"></script>
+<script src="/js/app.js?v=1575453685378"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 
